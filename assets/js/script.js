@@ -1,4 +1,4 @@
-alert('Linked')
+
 let myLibrary = [
     {
         title: 'Harry Potter',
