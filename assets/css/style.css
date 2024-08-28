@@ -29,6 +29,11 @@ body {
     color: #fdfcdc !important;
 }
 
+.blue {
+    background-color: #0081a7 !important;
+    color: #fdfcdc !important;
+}
+
 .navbar-brand {
     color: #fdfcdc !important;
     font-family: "Jersey 10", sans-serif;
@@ -39,4 +44,23 @@ body {
 
 .modal {
     color: black !important;
+}
+
+.library {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+    gap: 75px;
+    padding: 25px;
+}
+
+.card-header {
+    background-color: #f07167 !important;
+}
+
+.card-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
