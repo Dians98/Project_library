@@ -49,136 +49,69 @@
           <i class="fa-solid fa-book"> </i> Add Book
         </button>
 
-        <!-- Modal -->
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Add new book on your library !
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="email" class="form-control" id="title" />
-                </div>
-                <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label"
-                    >Author</label
-                  >
-                  <input type="email" class="form-control" id="author" />
-                </div>
-                <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label"
-                    >Number of pages</label
-                  >
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="exampleFormControlInput1"
-                  />
-                </div>
-                <div class="mb-3">
-                  <input
-                    class="form-check-input ml-1"
-                    type="checkbox"
-                    value=""
-                    id="firstCheckbox"
-                  />
-                  <label for="exampleFormControlTextarea1" class="form-label"
-                    >Have you read the book ?</label
-                  >
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button " class="btn sweet">Add</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        
     </nav>
-    <div class="library">
-      <div class="card" style="width: 18rem">
-        <div class="card-header">The best book ever !</div>
-        <div class="card-body">
-          <h3 class="card-title">Card title</h3>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <div class="card-footer">
-            <button class="btn blue">Mark as read</button>
-            <button class="btn sweet">Delete</button>
+    <div id="libraryContainer" class="libraryContainer">
+
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Add new book on your library !
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              id="closeModal"
+            ></button>
           </div>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem">
-        <div class="card-header">The best book ever !</div>
-        <div class="card-body">
-          <h3 class="card-title">Card title</h3>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <div class="card-footer">
-            <button class="btn blue">Mark as read</button>
-            <button class="btn sweet">Delete</button>
+          <div class="modal-body">
+            <form class="row g-3" id="bookForm" ">
+              <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" required />
+                <div class="feedback" id="titleFeedback"></div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" class="form-control" id="author" required />
+                <div class="feedback" id="authorFeedback"></div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="pages" class="form-label">Number of pages</label>
+                <input type="number" class="form-control" id="pages" required />
+                <div class="feedback" id="pagesFeedback"></div>
+              </div>
+              
+              <div class="mb-3">
+                <input class="form-check-input ml-1" type="checkbox" value="" id="read" />
+                <label for="read" class="form-label">Have you read the book?</label>
+              </div>
+            </form>
+            
+            
           </div>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem">
-        <div class="card-header">The best book ever !</div>
-        <div class="card-body">
-          <h3 class="card-title">Card title</h3>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <div class="card-footer">
-            <button class="btn blue">Mark as read</button>
-            <button class="btn sweet">Delete</button>
-          </div>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem">
-        <div class="card-header">The best book ever !</div>
-        <div class="card-body">
-          <h3 class="card-title">Card title</h3>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <div class="card-footer">
-            <button class="btn blue">Mark as read</button>
-            <button class="btn sweet">Delete</button>
-          </div>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem">
-        <div class="card-header">The best book ever !</div>
-        <div class="card-body">
-          <h3 class="card-title">Card title</h3>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <div class="card-footer">
-            <button class="btn blue">Mark as read</button>
-            <button class="btn sweet">Delete</button>
+          <div class="modal-footer">
+            <button type="button " class="btn sweet" onclick="addBook()">
+              Add
+            </button>
           </div>
         </div>
       </div>
