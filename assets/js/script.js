@@ -1,98 +1,95 @@
-
-let myLibrary = [
-    {
-        title: 'Harry Potter',
-        author: 'J.K. Rowling',
-        pages: 500,
-        read: true
-    },
-    {
-        title: 'Lord of the rings',
-        author: 'J.R.R. Tolkien',
-        pages: 700,
-        read: false
-    },
-    {
-        title: 'The Hobbit',
-        author: 'J.R.R. Tolkien',
-        pages: 300,
-        read: true
+/**Création de la classe librairie qui contient la liste des livres */
+class Library {
+    /**Constructeur : ici on initialise la librairie à vide, on va la remplir juste après */
+    /**TABLEAU de BOOK (l'objet) */
+    constructor() {
+        this.books = [];
     }
-];
 
+    addBook(book) {
+        this.books.push(book);
+    }
 
-displayBooks();
+    deleteBook(index) {
+        this.books.splice(index, 1);
+    }
 
-//Constructor
-function Book(title, author, pages, read) {
-    // the constructor...
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
+    toggleRead(index) {
+        this.books[index].toggleRead();
+    }
+    displayBooks() {
+        const booksContainer = document.querySelector('#libraryContainer');
+        booksContainer.innerHTML = '';
+        /**POur chaque livre contenu dans notre librairie, on crée une card */
+        this.books.forEach((book, index) => {
+            booksContainer.innerHTML += this.createBookCard(book, index);
+        });
+    }
 
+    /**Fonction pour créer la card */
+    createBookCard(book, index) {
 
-
-// Fonction pour générer une carte HTML pour un livre
-function createBookCard(book, index) {
-
-    return `
-    <div class="card" style="width: 18rem">
-        <div class="card-header">${book.title}</div>
-        <div class="card-body">
-          <h3 class="card-title">${book.author}</h3>
-          <p class="card-text">
-            Number of pages : ${book.pages} <br>
-            Status: <span style="color: ${book.read ? 'green' : 'red'};">
-                      ${book.read ? "Already read" : "Not read yet"}
-                    </span>
-          </p>
-          <div class="card-footer">
-            <button class="btn blue" onclick="markAsRead(${index})">${book.read ? "Mark as unread" : "Mark as read"}</button>
-            <button class="btn sweet" onclick="deleteBook(${index})">Delete</button>
+        return `
+        <div class="card" style="width: 18rem">
+            <div class="card-header">${book.title}</div>
+            <div class="card-body">
+              <h3 class="card-title">${book.author}</h3>
+              <p class="card-text">
+                Number of pages : ${book.pages} <br>
+                Status: <span style="color: ${book.read ? 'green' : 'red'};">
+                          ${book.read ? "Already read" : "Not read yet"}
+                        </span>
+              </p>
+              <div class="card-footer">
+                <button class="btn blue" onclick="myLibrary.markAsRead(${index})">${book.read ? "Mark as unread" : "Mark as read"}</button>
+                <button class="btn sweet" onclick="myLibrary.deleteBook(${index})">Delete</button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    `;
-}
-
-function displayBooks() {
-    const booksContainer = document.querySelector('#libraryContainer');
-    booksContainer.innerHTML = '';
-    myLibrary.forEach((book, index) => {
-        booksContainer.innerHTML += createBookCard(book, index);
-    });
-}
-
-function markAsRead(index) {
-    myLibrary[index].read = !myLibrary[index].read;
-    displayBooks();
-}
-
-function deleteBook(index) {
-    myLibrary.splice(index, 1);
-    displayBooks();
-}
-
-function addBook() {
-    if (validateForm()) {
-        const title = document.querySelector('#title').value;
-        const author = document.querySelector('#author').value;
-        const pages = document.querySelector('#pages').value;
-        const read = document.querySelector('#read').checked;
-        const book = new Book(title, author, pages, read);
-        addBookToLibrary(book);
-        //closeModal
-        document.querySelector('#closeModal').click();
-        displayBooks();
+        `;
+    }
+    markAsRead(index) {
+        this.toggleRead(index);
+        this.displayBooks();
     }
 
+    deleteBookAndDisplay(index) {
+        this.deleteBook(index);
+        this.displayBooks();
+    }
+
+    AddBookToLibrary() {
+        if (!validateForm()) {
+            return; // stop si validation échoue
+        }
+        const title = document.getElementById('title').value.trim();
+        const author = document.getElementById('author').value.trim();
+        const pages = parseInt(document.getElementById('pages').value);
+        const read = document.getElementById('read').checked;
+
+        const newBook = new Book(title, author, pages, read);
+        this.addBook(newBook);
+        this.displayBooks();
+
+        // Reset formulaire
+        document.getElementById('bookForm').reset();
+
+        const btn_close_modal = document.getElementById('closeModal');
+        btn_close_modal.click();
+        
+
+
+    }
 }
 
-function addBookToLibrary(book) {
-    // do stuff here
-    myLibrary.push(book);
+/**Classe Livre */
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 }
 
 function validateForm() {
@@ -128,7 +125,20 @@ function validateForm() {
     return isValid;
 }
 
-//VITA
+const myLibrary = new Library();
+
+myLibrary.addBook(new Book('Harry Potter', 'J.K. Rowling', 500, true));
+myLibrary.addBook(new Book('Lord of the rings', 'J.R.R. Tolkien', 700, false));
+myLibrary.addBook(new Book('The Hobbit', 'J.R.R. Tolkien', 300, true));
+
+myLibrary.displayBooks();
+
+
+
+
+
+
+
 
 
 
